@@ -1,5 +1,5 @@
 {
-  "type": "client-javascript",
+  "type": "client-typescript",
   "require": {
     "sdkfabric/notion": {
       "target": "./src"
