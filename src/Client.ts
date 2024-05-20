@@ -8,21 +8,30 @@ import {ClientAbstract, CredentialsInterface, TokenStoreInterface} from "sdkgen-
 import {HttpBearer} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
-import {UsersTag} from "./UsersTag";
-import {DatabasesTag} from "./DatabasesTag";
+import {UserTag} from "./UserTag";
+import {DatabaseTag} from "./DatabaseTag";
+import {PageTag} from "./PageTag";
 
 export class Client extends ClientAbstract {
-    public users(): UsersTag
+    public user(): UserTag
     {
-        return new UsersTag(
+        return new UserTag(
             this.httpClient,
             this.parser
         );
     }
 
-    public databases(): DatabasesTag
+    public database(): DatabaseTag
     {
-        return new DatabasesTag(
+        return new DatabaseTag(
+            this.httpClient,
+            this.parser
+        );
+    }
+
+    public page(): PageTag
+    {
+        return new PageTag(
             this.httpClient,
             this.parser
         );
