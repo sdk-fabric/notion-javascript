@@ -44,5 +44,39 @@ export class PageTag extends TagAbstract {
         }
     }
 
+    /**
+     * @returns {Promise<Page>}
+     * @throws {ClientException}
+     */
+    public async create(payload: Page): Promise<Page> {
+        const url = this.parser.url('/v1/pages', {
+        });
+
+        let params: AxiosRequestConfig = {
+            url: url,
+            method: 'POST',
+            params: this.parser.query({
+            }, [
+            ]),
+            data: payload
+        };
+
+        try {
+            const response = await this.httpClient.request<Page>(params);
+            return response.data;
+        } catch (error) {
+            if (error instanceof ClientException) {
+                throw error;
+            } else if (axios.isAxiosError(error) && error.response) {
+                switch (error.response.status) {
+                    default:
+                        throw new UnknownStatusCodeException('The server returned an unknown status code');
+                }
+            } else {
+                throw new ClientException('An unknown error occurred: ' + String(error));
+            }
+        }
+    }
+
 
 }

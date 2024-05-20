@@ -4,6 +4,8 @@
  */
 
 import {User} from "./User";
+import {DatabaseId} from "./DatabaseId";
+import {PageId} from "./PageId";
 export interface Page {
     object?: string
     id?: string
@@ -13,7 +15,9 @@ export interface Page {
     last_edited_by?: User
     cover?: string
     icon?: string
-    parent?: string
+    parent?: DatabaseId | PageId
     in_trash?: boolean
     properties?: Record<string, any>
+    url?: string
+    public_url?: string
 }
