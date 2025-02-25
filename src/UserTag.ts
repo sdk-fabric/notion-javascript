@@ -24,6 +24,8 @@ export class UserTag extends TagAbstract {
         let params: AxiosRequestConfig = {
             url: url,
             method: 'GET',
+            headers: {
+            },
             params: this.parser.query({
                 'start_cursor': startCursor,
                 'page_size': pageSize,
@@ -38,10 +40,9 @@ export class UserTag extends TagAbstract {
             if (error instanceof ClientException) {
                 throw error;
             } else if (axios.isAxiosError(error) && error.response) {
-                switch (error.response.status) {
-                    default:
-                        throw new UnknownStatusCodeException('The server returned an unknown status code');
-                }
+                const statusCode = error.response.status;
+
+                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
             } else {
                 throw new ClientException('An unknown error occurred: ' + String(error));
             }
@@ -49,6 +50,8 @@ export class UserTag extends TagAbstract {
     }
 
     /**
+     * Retrieves a User using the ID specified.
+     *
      * @returns {Promise<User>}
      * @throws {ClientException}
      */
@@ -60,6 +63,8 @@ export class UserTag extends TagAbstract {
         let params: AxiosRequestConfig = {
             url: url,
             method: 'GET',
+            headers: {
+            },
             params: this.parser.query({
             }, [
             ]),
@@ -72,10 +77,9 @@ export class UserTag extends TagAbstract {
             if (error instanceof ClientException) {
                 throw error;
             } else if (axios.isAxiosError(error) && error.response) {
-                switch (error.response.status) {
-                    default:
-                        throw new UnknownStatusCodeException('The server returned an unknown status code');
-                }
+                const statusCode = error.response.status;
+
+                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
             } else {
                 throw new ClientException('An unknown error occurred: ' + String(error));
             }

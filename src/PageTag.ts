@@ -11,6 +11,8 @@ import {Page} from "./Page";
 
 export class PageTag extends TagAbstract {
     /**
+     * Retrieves a Page object using the ID specified.
+     *
      * @returns {Promise<Page>}
      * @throws {ClientException}
      */
@@ -22,6 +24,8 @@ export class PageTag extends TagAbstract {
         let params: AxiosRequestConfig = {
             url: url,
             method: 'GET',
+            headers: {
+            },
             params: this.parser.query({
             }, [
             ]),
@@ -34,10 +38,9 @@ export class PageTag extends TagAbstract {
             if (error instanceof ClientException) {
                 throw error;
             } else if (axios.isAxiosError(error) && error.response) {
-                switch (error.response.status) {
-                    default:
-                        throw new UnknownStatusCodeException('The server returned an unknown status code');
-                }
+                const statusCode = error.response.status;
+
+                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
             } else {
                 throw new ClientException('An unknown error occurred: ' + String(error));
             }
@@ -45,6 +48,8 @@ export class PageTag extends TagAbstract {
     }
 
     /**
+     * Creates a new page that is a child of an existing page or database.
+     *
      * @returns {Promise<Page>}
      * @throws {ClientException}
      */
@@ -55,6 +60,9 @@ export class PageTag extends TagAbstract {
         let params: AxiosRequestConfig = {
             url: url,
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             params: this.parser.query({
             }, [
             ]),
@@ -68,10 +76,9 @@ export class PageTag extends TagAbstract {
             if (error instanceof ClientException) {
                 throw error;
             } else if (axios.isAxiosError(error) && error.response) {
-                switch (error.response.status) {
-                    default:
-                        throw new UnknownStatusCodeException('The server returned an unknown status code');
-                }
+                const statusCode = error.response.status;
+
+                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
             } else {
                 throw new ClientException('An unknown error occurred: ' + String(error));
             }
