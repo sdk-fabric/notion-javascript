@@ -4,9 +4,11 @@
  */
 
 import {RichTextAnnotation} from "./RichTextAnnotation";
+
 export interface RichText {
     type?: string
     annotations?: RichTextAnnotation
     plain_text?: string
     href?: string
 }
+

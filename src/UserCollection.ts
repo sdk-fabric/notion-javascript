@@ -4,8 +4,10 @@
  */
 
 import {User} from "./User";
+
 export interface UserCollection {
     results?: Array<User>
     next_cursor?: string
     has_more?: boolean
 }
+

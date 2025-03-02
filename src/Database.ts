@@ -6,6 +6,7 @@
 import {DatabaseIcon} from "./DatabaseIcon";
 import {DatabaseCover} from "./DatabaseCover";
 import {DatabaseTitle} from "./DatabaseTitle";
+
 export interface Database {
     object?: string
     id?: string
@@ -17,3 +18,4 @@ export interface Database {
     title?: Array<DatabaseTitle>
     description?: Array<DatabaseTitle>
 }
+

@@ -11,3 +11,4 @@ export interface RichTextAnnotation {
     code?: boolean
     color?: string
 }
+

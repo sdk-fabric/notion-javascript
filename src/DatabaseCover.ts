@@ -7,3 +7,4 @@ export interface DatabaseCover {
     type?: string
     external?: any
 }
+

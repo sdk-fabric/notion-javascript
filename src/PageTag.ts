@@ -3,10 +3,11 @@
  * {@link https://sdkgen.app}
  */
 
-import axios, {AxiosRequestConfig} from "axios";
-import {TagAbstract} from "sdkgen-client"
+import {TagAbstract, HttpRequest} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
+import {Error} from "./Error";
+import {ErrorException} from "./ErrorException";
 import {Page} from "./Page";
 
 export class PageTag extends TagAbstract {
@@ -14,6 +15,7 @@ export class PageTag extends TagAbstract {
      * Retrieves a Page object using the ID specified.
      *
      * @returns {Promise<Page>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async get(pageId: string): Promise<Page> {
@@ -21,7 +23,7 @@ export class PageTag extends TagAbstract {
             'page_id': pageId,
         });
 
-        let params: AxiosRequestConfig = {
+        let request: HttpRequest = {
             url: url,
             method: 'GET',
             headers: {
@@ -31,33 +33,30 @@ export class PageTag extends TagAbstract {
             ]),
         };
 
-        try {
-            const response = await this.httpClient.request<Page>(params);
-            return response.data;
-        } catch (error) {
-            if (error instanceof ClientException) {
-                throw error;
-            } else if (axios.isAxiosError(error) && error.response) {
-                const statusCode = error.response.status;
-
-                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
-            } else {
-                throw new ClientException('An unknown error occurred: ' + String(error));
-            }
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as Page;
         }
-    }
 
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
     /**
      * Creates a new page that is a child of an existing page or database.
      *
      * @returns {Promise<Page>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async create(payload: Page): Promise<Page> {
         const url = this.parser.url('/v1/pages', {
         });
 
-        let params: AxiosRequestConfig = {
+        let request: HttpRequest = {
             url: url,
             method: 'POST',
             headers: {
@@ -69,21 +68,19 @@ export class PageTag extends TagAbstract {
             data: payload
         };
 
-        try {
-            const response = await this.httpClient.request<Page>(params);
-            return response.data;
-        } catch (error) {
-            if (error instanceof ClientException) {
-                throw error;
-            } else if (axios.isAxiosError(error) && error.response) {
-                const statusCode = error.response.status;
-
-                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
-            } else {
-                throw new ClientException('An unknown error occurred: ' + String(error));
-            }
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as Page;
         }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
+
 
 
 }

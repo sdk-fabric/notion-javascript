@@ -4,6 +4,7 @@
  */
 
 import {Person} from "./Person";
+
 export interface User {
     object?: string
     id?: string
@@ -12,3 +13,4 @@ export interface User {
     name?: string
     avatar_url?: string
 }
+

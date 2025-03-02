@@ -5,8 +5,10 @@
 
 import {PageId} from "./PageId";
 import {RichText} from "./RichText";
+
 export interface Comment {
     parent?: PageId
     discussion_id?: string
     rich_text?: RichText
 }
+

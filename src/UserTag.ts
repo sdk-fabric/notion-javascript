@@ -3,10 +3,11 @@
  * {@link https://sdkgen.app}
  */
 
-import axios, {AxiosRequestConfig} from "axios";
-import {TagAbstract} from "sdkgen-client"
+import {TagAbstract, HttpRequest} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
+import {Error} from "./Error";
+import {ErrorException} from "./ErrorException";
 import {User} from "./User";
 import {UserCollection} from "./UserCollection";
 
@@ -15,13 +16,14 @@ export class UserTag extends TagAbstract {
      * Returns a paginated list of Users for the workspace. The response may contain fewer than page_size of results.
      *
      * @returns {Promise<UserCollection>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async getAll(startCursor?: string, pageSize?: number): Promise<UserCollection> {
         const url = this.parser.url('/v1/users', {
         });
 
-        let params: AxiosRequestConfig = {
+        let request: HttpRequest = {
             url: url,
             method: 'GET',
             headers: {
@@ -33,26 +35,23 @@ export class UserTag extends TagAbstract {
             ]),
         };
 
-        try {
-            const response = await this.httpClient.request<UserCollection>(params);
-            return response.data;
-        } catch (error) {
-            if (error instanceof ClientException) {
-                throw error;
-            } else if (axios.isAxiosError(error) && error.response) {
-                const statusCode = error.response.status;
-
-                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
-            } else {
-                throw new ClientException('An unknown error occurred: ' + String(error));
-            }
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as UserCollection;
         }
-    }
 
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
     /**
      * Retrieves a User using the ID specified.
      *
      * @returns {Promise<User>}
+     * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async get(userId: string): Promise<User> {
@@ -60,7 +59,7 @@ export class UserTag extends TagAbstract {
             'user_id': userId,
         });
 
-        let params: AxiosRequestConfig = {
+        let request: HttpRequest = {
             url: url,
             method: 'GET',
             headers: {
@@ -70,21 +69,19 @@ export class UserTag extends TagAbstract {
             ]),
         };
 
-        try {
-            const response = await this.httpClient.request<User>(params);
-            return response.data;
-        } catch (error) {
-            if (error instanceof ClientException) {
-                throw error;
-            } else if (axios.isAxiosError(error) && error.response) {
-                const statusCode = error.response.status;
-
-                throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
-            } else {
-                throw new ClientException('An unknown error occurred: ' + String(error));
-            }
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as User;
         }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
+
 
 
 }

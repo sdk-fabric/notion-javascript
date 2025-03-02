@@ -4,6 +4,7 @@
  */
 
 import {DatabaseAnnotations} from "./DatabaseAnnotations";
+
 export interface DatabaseTitle {
     type?: string
     text?: string
@@ -11,3 +12,4 @@ export interface DatabaseTitle {
     plain_text?: string
     href?: string
 }
+

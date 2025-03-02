@@ -7,3 +7,4 @@ export interface DatabaseIcon {
     type?: string
     emoji?: string
 }
+

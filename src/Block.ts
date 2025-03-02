@@ -5,6 +5,7 @@
 
 import {Page} from "./Page";
 import {User} from "./User";
+
 export interface Block {
     object?: string
     id?: string
@@ -17,3 +18,4 @@ export interface Block {
     in_trash?: boolean
     type?: string
 }
+

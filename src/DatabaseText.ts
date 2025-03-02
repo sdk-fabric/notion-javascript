@@ -7,3 +7,4 @@ export interface DatabaseText {
     content?: string
     link?: string
 }
+
