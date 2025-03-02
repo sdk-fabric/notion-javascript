@@ -4,6 +4,9 @@
  */
 
 import {User} from "./User";
+import {FileObject} from "./FileObject";
+import {Icon} from "./Icon";
+import {ParentId} from "./ParentId";
 
 export interface Page {
     object?: string
@@ -12,11 +15,11 @@ export interface Page {
     last_edited_time?: string
     created_by?: User
     last_edited_by?: User
-    cover?: string
-    icon?: string
-    parent?: any
+    cover?: FileObject
+    icon?: Icon
     in_trash?: boolean
     properties?: Record<string, any>
+    parent?: ParentId
     url?: string
     public_url?: string
 }
