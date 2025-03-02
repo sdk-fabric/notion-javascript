@@ -3,6 +3,8 @@
  * {@link https://sdkgen.app}
  */
 
+import {RichTextEquation} from "./RichTextEquation";
+import {RichTextText} from "./RichTextText";
 import {RichTextAnnotation} from "./RichTextAnnotation";
 
 export interface RichText {

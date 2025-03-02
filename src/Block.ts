@@ -4,6 +4,24 @@
  */
 
 import {BlockBookmark} from "./BlockBookmark";
+import {BlockBreadcrumb} from "./BlockBreadcrumb";
+import {BlockBulletedListItem} from "./BlockBulletedListItem";
+import {BlockCallout} from "./BlockCallout";
+import {BlockChildDatabase} from "./BlockChildDatabase";
+import {BlockChildPage} from "./BlockChildPage";
+import {BlockCode} from "./BlockCode";
+import {BlockDivider} from "./BlockDivider";
+import {BlockEmbed} from "./BlockEmbed";
+import {BlockEquation} from "./BlockEquation";
+import {BlockFile} from "./BlockFile";
+import {BlockHeading} from "./BlockHeading1";
+import {BlockHeading} from "./BlockHeading2";
+import {BlockHeading} from "./BlockHeading3";
+import {BlockImage} from "./BlockImage";
+import {BlockNumberedListItem} from "./BlockNumberedListItem";
+import {BlockParagraph} from "./BlockParagraph";
+import {BlockPDF} from "./BlockPDF";
+import {BlockQuote} from "./BlockQuote";
 import {ParentId} from "./ParentId";
 import {User} from "./User";
 
