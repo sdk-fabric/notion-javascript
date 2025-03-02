@@ -4,9 +4,9 @@
  */
 
 import {Icon} from "./Icon";
-import {External} from "./External";
+import {ExternalObject} from "./ExternalObject";
 
 export interface ExternalIcon extends Icon {
-    external?: External
+    external?: ExternalObject
 }
 

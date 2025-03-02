@@ -3,8 +3,12 @@
  * {@link https://sdkgen.app}
  */
 
+import {RichText} from "./RichText";
+import {FileObject} from "./FileObject";
+
 export interface File {
-    url?: string
-    expiry_time?: string
+    caption?: Array<RichText>
+    file?: FileObject
+    name?: string
 }
 

@@ -4,9 +4,9 @@
  */
 
 import {Icon} from "./Icon";
-import {File} from "./File";
+import {FileObject} from "./FileObject";
 
 export interface FileIcon extends Icon {
-    file?: File
+    file?: FileObject
 }
 
