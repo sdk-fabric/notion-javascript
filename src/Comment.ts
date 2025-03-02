@@ -3,11 +3,11 @@
  * {@link https://sdkgen.app}
  */
 
-import {PageId} from "./PageId";
+import {ParentId} from "./ParentId";
 import {RichText} from "./RichText";
 
 export interface Comment {
-    parent?: PageId
+    parent?: ParentId
     discussion_id?: string
     rich_text?: RichText
 }

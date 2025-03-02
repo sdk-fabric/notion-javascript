@@ -3,19 +3,21 @@
  * {@link https://sdkgen.app}
  */
 
-import {Page} from "./Page";
+import {BlockBookmark} from "./BlockBookmark";
+import {ParentId} from "./ParentId";
 import {User} from "./User";
 
 export interface Block {
     object?: string
     id?: string
-    parent?: Page
-    created_time?: string
-    last_edited_time?: string
-    created_by?: User
-    last_edited_by?: User
-    has_children?: boolean
-    in_trash?: boolean
+    parent?: ParentId
     type?: string
+    created_time?: string
+    created_by?: User
+    last_edited_time?: string
+    last_edited_by?: User
+    archived?: boolean
+    in_trash?: boolean
+    has_children?: boolean
 }
 
