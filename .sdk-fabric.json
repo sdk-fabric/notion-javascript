@@ -1,0 +1,10 @@
+{
+  "typehub_user": "sdkfabric",
+  "typehub_document": "notion",
+  "github_user": "sdk-fabric",
+  "github_repository": "notion-javascript",
+
+  "name": "@sdkfabric/notion",
+  "description": "Notion JavaScript SDK managed by SDK Fabric",
+  "website": "https://sdk-fabric.org"
+}
