@@ -13,7 +13,7 @@ https://app.typehub.cloud/d/sdkfabric/notion
 const client = Client::build('[access_token]');
 
 // Returns a paginated list of Users for the workspace.
-const response = await client.user().getall("Notion-Version", "start_cursor", 1);
+const response = await client.user().getAll("Notion-Version", "start_cursor", 1);
 
 // Retrieves a User using the ID specified.
 const response = await client.user().get("Notion-Version", "user_id");
