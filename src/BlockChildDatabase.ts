@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {ChildDatabase} from "./ChildDatabase";
+import type {Block} from "./Block";
+import type {ChildDatabase} from "./ChildDatabase";
 
+/**
+ * Child database block.
+ */
 export interface BlockChildDatabase extends Block {
+    type: "child_database"
     child_database?: ChildDatabase
 }
 

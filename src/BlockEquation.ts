@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {Equation} from "./Equation";
+import type {Block} from "./Block";
+import type {Equation} from "./Equation";
 
+/**
+ * Equation block.
+ */
 export interface BlockEquation extends Block {
+    type: "equation"
     equation?: Equation
 }
 

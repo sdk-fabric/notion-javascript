@@ -3,12 +3,24 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
-import {Icon} from "./Icon";
+import type {Icon} from "./Icon";
+import type {RichText} from "./RichText";
+import type {CustomEmojiIcon} from "./CustomEmojiIcon";
+import type {EmojiIcon} from "./EmojiIcon";
+import type {ExternalIcon} from "./ExternalIcon";
+import type {FileIcon} from "./FileIcon";
+import type {FileUploadIcon} from "./FileUploadIcon";
+import type {NoticonIcon} from "./NoticonIcon";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * Content of a callout block.
+ */
 export interface Callout {
-    rich_text?: Array<RichText>
-    icon?: Icon
     color?: string
+    icon?: CustomEmojiIcon|EmojiIcon|ExternalIcon|FileIcon|FileUploadIcon|NoticonIcon
+    rich_text?: Array<RichTextEquation|RichTextMention|RichTextText>
 }
 

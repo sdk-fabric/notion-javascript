@@ -3,9 +3,13 @@
  * {@link https://sdkgen.app}
  */
 
-import {ParentId} from "./ParentId";
+import type {ParentId} from "./ParentId";
 
+/**
+ * Parent is a page.
+ */
 export interface PageParentId extends ParentId {
+    type: "page_id"
     page_id?: string
 }
 

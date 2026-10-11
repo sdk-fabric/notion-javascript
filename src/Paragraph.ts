@@ -3,12 +3,62 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
-import {Block} from "./Block";
+import type {Block} from "./Block";
+import type {Icon} from "./Icon";
+import type {RichText} from "./RichText";
+import type {BlockAudio} from "./BlockAudio";
+import type {BlockBookmark} from "./BlockBookmark";
+import type {BlockBreadcrumb} from "./BlockBreadcrumb";
+import type {BlockBulletedListItem} from "./BlockBulletedListItem";
+import type {BlockCallout} from "./BlockCallout";
+import type {BlockChildDatabase} from "./BlockChildDatabase";
+import type {BlockChildPage} from "./BlockChildPage";
+import type {BlockCode} from "./BlockCode";
+import type {BlockColumn} from "./BlockColumn";
+import type {BlockColumnList} from "./BlockColumnList";
+import type {BlockDivider} from "./BlockDivider";
+import type {BlockEmbed} from "./BlockEmbed";
+import type {BlockEquation} from "./BlockEquation";
+import type {BlockFile} from "./BlockFile";
+import type {BlockHeadingFour} from "./BlockHeadingFour";
+import type {BlockHeadingOne} from "./BlockHeadingOne";
+import type {BlockHeadingThree} from "./BlockHeadingThree";
+import type {BlockHeadingTwo} from "./BlockHeadingTwo";
+import type {BlockImage} from "./BlockImage";
+import type {BlockLinkPreview} from "./BlockLinkPreview";
+import type {BlockLinkToPage} from "./BlockLinkToPage";
+import type {BlockMeetingNotes} from "./BlockMeetingNotes";
+import type {BlockNumberedListItem} from "./BlockNumberedListItem";
+import type {BlockPDF} from "./BlockPDF";
+import type {BlockParagraph} from "./BlockParagraph";
+import type {BlockQuote} from "./BlockQuote";
+import type {BlockSyncedBlock} from "./BlockSyncedBlock";
+import type {BlockTab} from "./BlockTab";
+import type {BlockTable} from "./BlockTable";
+import type {BlockTableOfContents} from "./BlockTableOfContents";
+import type {BlockTableRow} from "./BlockTableRow";
+import type {BlockTemplate} from "./BlockTemplate";
+import type {BlockToDo} from "./BlockToDo";
+import type {BlockToggle} from "./BlockToggle";
+import type {BlockUnsupported} from "./BlockUnsupported";
+import type {BlockVideo} from "./BlockVideo";
+import type {CustomEmojiIcon} from "./CustomEmojiIcon";
+import type {EmojiIcon} from "./EmojiIcon";
+import type {ExternalIcon} from "./ExternalIcon";
+import type {FileIcon} from "./FileIcon";
+import type {FileUploadIcon} from "./FileUploadIcon";
+import type {NoticonIcon} from "./NoticonIcon";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * Content of a paragraph block.
+ */
 export interface Paragraph {
-    rich_text?: Array<RichText>
+    children?: Array<BlockAudio|BlockBookmark|BlockBreadcrumb|BlockBulletedListItem|BlockCallout|BlockChildDatabase|BlockChildPage|BlockCode|BlockColumn|BlockColumnList|BlockDivider|BlockEmbed|BlockEquation|BlockFile|BlockHeadingFour|BlockHeadingOne|BlockHeadingThree|BlockHeadingTwo|BlockImage|BlockLinkPreview|BlockLinkToPage|BlockMeetingNotes|BlockNumberedListItem|BlockPDF|BlockParagraph|BlockQuote|BlockSyncedBlock|BlockTab|BlockTable|BlockTableOfContents|BlockTableRow|BlockTemplate|BlockToDo|BlockToggle|BlockUnsupported|BlockVideo>
     color?: string
-    children?: Array<Block>
+    icon?: CustomEmojiIcon|EmojiIcon|ExternalIcon|FileIcon|FileUploadIcon|NoticonIcon
+    rich_text?: Array<RichTextEquation|RichTextMention|RichTextText>
 }
 

@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {Code} from "./Code";
+import type {Block} from "./Block";
+import type {Code} from "./Code";
 
+/**
+ * Code block.
+ */
 export interface BlockCode extends Block {
+    type: "code"
     code?: Code
 }
 

@@ -3,12 +3,23 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
-import {FileObject} from "./FileObject";
+import type {RichText} from "./RichText";
+import type {ExternalObject} from "./ExternalObject";
+import type {FileObject} from "./FileObject";
+import type {IdReference} from "./IdReference";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * File object used by image, video, pdf, file and audio blocks, and by files property values.
+ */
 export interface File {
-    caption?: Array<RichText>
+    caption?: Array<RichTextEquation|RichTextMention|RichTextText>
+    external?: ExternalObject
     file?: FileObject
+    file_upload?: IdReference
     name?: string
+    type?: string
 }
 

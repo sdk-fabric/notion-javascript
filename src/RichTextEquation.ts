@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
-import {Equation} from "./Equation";
+import type {RichText} from "./RichText";
+import type {Equation} from "./Equation";
 
+/**
+ * Rich text object of type equation.
+ */
 export interface RichTextEquation extends RichText {
+    type: "equation"
     equation?: Equation
 }
 

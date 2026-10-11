@@ -3,8 +3,11 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * A Notion-hosted file with a temporary URL.
+ */
 export interface FileObject {
-    url?: string
     expiry_time?: string
+    url?: string
 }
 

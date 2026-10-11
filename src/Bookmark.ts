@@ -3,10 +3,16 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
+import type {RichText} from "./RichText";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * Content of a bookmark block.
+ */
 export interface Bookmark {
-    caption?: Array<RichText>
+    caption?: Array<RichTextEquation|RichTextMention|RichTextText>
     url?: string
 }
 

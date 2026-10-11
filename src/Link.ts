@@ -3,6 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * An inline link.
+ */
 export interface Link {
     url?: string
 }

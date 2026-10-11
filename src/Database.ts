@@ -3,19 +3,46 @@
  * {@link https://sdkgen.app}
  */
 
-import {DatabaseIcon} from "./DatabaseIcon";
-import {DatabaseCover} from "./DatabaseCover";
-import {DatabaseTitle} from "./DatabaseTitle";
+import type {Cover} from "./Cover";
+import type {DataSourceReference} from "./DataSourceReference";
+import type {RichText} from "./RichText";
+import type {Icon} from "./Icon";
+import type {ParentId} from "./ParentId";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
+import type {CustomEmojiIcon} from "./CustomEmojiIcon";
+import type {EmojiIcon} from "./EmojiIcon";
+import type {ExternalIcon} from "./ExternalIcon";
+import type {FileIcon} from "./FileIcon";
+import type {FileUploadIcon} from "./FileUploadIcon";
+import type {NoticonIcon} from "./NoticonIcon";
+import type {AgentParentId} from "./AgentParentId";
+import type {BlockParentId} from "./BlockParentId";
+import type {DataSourceParentId} from "./DataSourceParentId";
+import type {DatabaseParentId} from "./DatabaseParentId";
+import type {PageParentId} from "./PageParentId";
+import type {WorkspaceParentId} from "./WorkspaceParentId";
 
+/**
+ * A database: a container for one or more data sources.
+ */
 export interface Database {
-    object?: string
-    id?: string
+    cover?: Cover
     created_time?: string
+    data_sources?: Array<DataSourceReference>
+    database_type?: string
+    description?: Array<RichTextEquation|RichTextMention|RichTextText>
+    icon?: CustomEmojiIcon|EmojiIcon|ExternalIcon|FileIcon|FileUploadIcon|NoticonIcon
+    id?: string
+    in_trash?: boolean
+    is_inline?: boolean
+    is_locked?: boolean
     last_edited_time?: string
-    icon?: DatabaseIcon
-    cover?: DatabaseCover
+    object?: string
+    parent?: AgentParentId|BlockParentId|DataSourceParentId|DatabaseParentId|PageParentId|WorkspaceParentId
+    public_url?: string
+    title?: Array<RichTextEquation|RichTextMention|RichTextText>
     url?: string
-    title?: Array<DatabaseTitle>
-    description?: Array<DatabaseTitle>
 }
 

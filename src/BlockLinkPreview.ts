@@ -3,9 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {LinkPreview} from "./LinkPreview";
+import type {Block} from "./Block";
+import type {LinkPreview} from "./LinkPreview";
 
-export interface BlockLinkPreview {
+/**
+ * Link preview block (read-only).
+ */
+export interface BlockLinkPreview extends Block {
+    type: "link_preview"
     link_preview?: LinkPreview
 }
 

@@ -3,8 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
+import type {Block} from "./Block";
+import type {EmptyObject} from "./EmptyObject";
 
+/**
+ * Divider block.
+ */
 export interface BlockDivider extends Block {
+    type: "divider"
+    divider?: EmptyObject
 }
 

@@ -3,6 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * Content of a child page block.
+ */
 export interface ChildPage {
     title?: string
 }

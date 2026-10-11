@@ -3,6 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * A LaTeX equation expression.
+ */
 export interface Equation {
     expression?: string
 }

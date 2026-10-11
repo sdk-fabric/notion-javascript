@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {Paragraph} from "./Paragraph";
+import type {Block} from "./Block";
+import type {Paragraph} from "./Paragraph";
 
+/**
+ * Paragraph block.
+ */
 export interface BlockParagraph extends Block {
+    type: "paragraph"
     paragraph?: Paragraph
 }
 

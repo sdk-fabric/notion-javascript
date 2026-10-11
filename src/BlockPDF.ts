@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {PDF} from "./PDF";
+import type {Block} from "./Block";
+import type {File} from "./File";
 
+/**
+ * PDF block.
+ */
 export interface BlockPDF extends Block {
-    pdf?: PDF
+    type: "pdf"
+    pdf?: File
 }
 

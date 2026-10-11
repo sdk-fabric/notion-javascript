@@ -3,12 +3,15 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * Styling annotations of rich text.
+ */
 export interface RichTextAnnotation {
     bold?: boolean
+    code?: boolean
+    color?: string
     italic?: boolean
     strikethrough?: boolean
     underline?: boolean
-    code?: boolean
-    color?: string
 }
 

@@ -3,8 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
+import type {Block} from "./Block";
+import type {EmptyObject} from "./EmptyObject";
 
+/**
+ * Breadcrumb block.
+ */
 export interface BlockBreadcrumb extends Block {
+    type: "breadcrumb"
+    breadcrumb?: EmptyObject
 }
 

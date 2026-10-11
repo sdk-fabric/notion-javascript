@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Icon} from "./Icon";
-import {FileObject} from "./FileObject";
+import type {Icon} from "./Icon";
+import type {FileObject} from "./FileObject";
 
+/**
+ * Icon hosted by Notion.
+ */
 export interface FileIcon extends Icon {
+    type: "file"
     file?: FileObject
 }
 

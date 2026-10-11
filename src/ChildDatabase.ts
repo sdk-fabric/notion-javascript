@@ -3,6 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * Content of a child database block.
+ */
 export interface ChildDatabase {
     title?: string
 }

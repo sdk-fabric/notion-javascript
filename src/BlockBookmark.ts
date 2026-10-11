@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {Bookmark} from "./Bookmark";
+import type {Block} from "./Block";
+import type {Bookmark} from "./Bookmark";
 
+/**
+ * Bookmark block.
+ */
 export interface BlockBookmark extends Block {
+    type: "bookmark"
     bookmark?: Bookmark
 }
 

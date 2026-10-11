@@ -3,14 +3,19 @@
  * {@link https://sdkgen.app}
  */
 
-import {Person} from "./Person";
+import type {UserBot} from "./UserBot";
+import type {Person} from "./Person";
 
+/**
+ * A user in a Notion workspace: a member, guest or bot (integration).
+ */
 export interface User {
-    object?: string
-    id?: string
-    type?: string
-    person?: Person
-    name?: string
     avatar_url?: string
+    bot?: UserBot
+    id?: string
+    name?: string
+    object?: string
+    person?: Person
+    type?: string
 }
 

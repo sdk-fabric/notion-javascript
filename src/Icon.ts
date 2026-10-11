@@ -3,10 +3,16 @@
  * {@link https://sdkgen.app}
  */
 
-import {EmojiIcon} from "./EmojiIcon";
-import {FileIcon} from "./FileIcon";
-import {ExternalIcon} from "./ExternalIcon";
+import type {CustomEmojiIcon} from "./CustomEmojiIcon";
+import type {EmojiIcon} from "./EmojiIcon";
+import type {ExternalIcon} from "./ExternalIcon";
+import type {FileIcon} from "./FileIcon";
+import type {FileUploadIcon} from "./FileUploadIcon";
+import type {NoticonIcon} from "./NoticonIcon";
 
+/**
+ * Page, database or block icon.
+ */
 export interface Icon {
     type?: string
 }

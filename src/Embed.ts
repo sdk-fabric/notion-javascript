@@ -3,7 +3,16 @@
  * {@link https://sdkgen.app}
  */
 
+import type {RichText} from "./RichText";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
+
+/**
+ * Content of an embed block.
+ */
 export interface Embed {
+    caption?: Array<RichTextEquation|RichTextMention|RichTextText>
     url?: string
 }
 

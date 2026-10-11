@@ -6,20 +6,62 @@
 import {TagAbstract, HttpRequest} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
+import {CreatePageRequest} from "./CreatePageRequest";
 import {Error} from "./Error";
 import {ErrorException} from "./ErrorException";
+import {MovePageRequest} from "./MovePageRequest";
 import {Page} from "./Page";
+import {PageMarkdown} from "./PageMarkdown";
+import {PropertyItem} from "./PropertyItem";
+import {UpdatePageMarkdownRequest} from "./UpdatePageMarkdownRequest";
+import {UpdatePageRequest} from "./UpdatePageRequest";
 
 export class PageTag extends TagAbstract {
     /**
-     * Retrieves a Page object using the ID specified.
+     * Creates a new page as a child of an existing page or data source.
      *
      * @returns {Promise<Page>}
      * @throws {ErrorException}
      * @throws {ClientException}
      */
-    public async get(pageId: string): Promise<Page> {
-        const url = this.parser.url('/v1/pages/:page_id', {
+    public async create(payload: CreatePageRequest, filterProperties?: string): Promise<Page> {
+        const url = this.parser.url('/pages', {
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            params: this.parser.query({
+                'filter_properties': filterProperties,
+            }, [
+            ]),
+            data: payload
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as Page;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Retrieves a Page object using the ID specified. To read page content, use Retrieve block children.
+     *
+     * @returns {Promise<Page>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async get(pageId: string, filterProperties?: string): Promise<Page> {
+        const url = this.parser.url('/pages/:page_id', {
             'page_id': pageId,
         });
 
@@ -29,6 +71,7 @@ export class PageTag extends TagAbstract {
             headers: {
             },
             params: this.parser.query({
+                'filter_properties': filterProperties,
             }, [
             ]),
         };
@@ -46,14 +89,87 @@ export class PageTag extends TagAbstract {
         throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
     /**
-     * Creates a new page that is a child of an existing page or database.
+     * Retrieves the content of a page rendered as enhanced markdown.
+     *
+     * @returns {Promise<PageMarkdown>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async getMarkdown(pageId: string, includeTranscript?: boolean): Promise<PageMarkdown> {
+        const url = this.parser.url('/pages/:page_id/markdown', {
+            'page_id': pageId,
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'GET',
+            headers: {
+            },
+            params: this.parser.query({
+                'include_transcript': includeTranscript,
+            }, [
+            ]),
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as PageMarkdown;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Retrieves a page property item. Paginated for title, rich_text, relation, people and rollup properties.
+     *
+     * @returns {Promise<PropertyItem>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async getProperty(pageId: string, propertyId: string, pageSize?: number, startCursor?: string): Promise<PropertyItem> {
+        const url = this.parser.url('/pages/:page_id/properties/:property_id', {
+            'page_id': pageId,
+            'property_id': propertyId,
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'GET',
+            headers: {
+            },
+            params: this.parser.query({
+                'page_size': pageSize,
+                'start_cursor': startCursor,
+            }, [
+            ]),
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as PropertyItem;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Moves an existing page to a new parent page or data source.
      *
      * @returns {Promise<Page>}
      * @throws {ErrorException}
      * @throws {ClientException}
      */
-    public async create(payload: Page): Promise<Page> {
-        const url = this.parser.url('/v1/pages', {
+    public async move(pageId: string, payload: MovePageRequest): Promise<Page> {
+        const url = this.parser.url('/pages/:page_id/move', {
+            'page_id': pageId,
         });
 
         let request: HttpRequest = {
@@ -71,6 +187,79 @@ export class PageTag extends TagAbstract {
         const response = await this.httpClient.request(request);
         if (response.ok) {
             return await response.json() as Page;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Updates page properties, icon, cover, lock state or trash status (in_trash).
+     *
+     * @returns {Promise<Page>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async update(pageId: string, payload: UpdatePageRequest, filterProperties?: string): Promise<Page> {
+        const url = this.parser.url('/pages/:page_id', {
+            'page_id': pageId,
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            params: this.parser.query({
+                'filter_properties': filterProperties,
+            }, [
+            ]),
+            data: payload
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as Page;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Updates or replaces content in a page using enhanced markdown.
+     *
+     * @returns {Promise<PageMarkdown>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async updateMarkdown(pageId: string, payload: UpdatePageMarkdownRequest): Promise<PageMarkdown> {
+        const url = this.parser.url('/pages/:page_id/markdown', {
+            'page_id': pageId,
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            params: this.parser.query({
+            }, [
+            ]),
+            data: payload
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as PageMarkdown;
         }
 
         const statusCode = response.status;

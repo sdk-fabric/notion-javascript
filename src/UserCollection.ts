@@ -3,11 +3,16 @@
  * {@link https://sdkgen.app}
  */
 
-import {User} from "./User";
+import type {User} from "./User";
 
+/**
+ * Paginated list of users.
+ */
 export interface UserCollection {
-    results?: Array<User>
-    next_cursor?: string
     has_more?: boolean
+    next_cursor?: string
+    object?: string
+    results?: Array<User>
+    type?: string
 }
 

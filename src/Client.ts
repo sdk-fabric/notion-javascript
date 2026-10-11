@@ -8,14 +8,24 @@ import {HttpBearer} from "sdkgen-client"
 import {Anonymous} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
-import {UserTag} from "./UserTag";
+import {BlockTag} from "./BlockTag";
+import {DataSourceTag} from "./DataSourceTag";
 import {DatabaseTag} from "./DatabaseTag";
 import {PageTag} from "./PageTag";
+import {UserTag} from "./UserTag";
 
 export class Client extends ClientAbstract {
-    public user(): UserTag
+    public block(): BlockTag
     {
-        return new UserTag(
+        return new BlockTag(
+            this.httpClient,
+            this.parser
+        );
+    }
+
+    public dataSource(): DataSourceTag
+    {
+        return new DataSourceTag(
             this.httpClient,
             this.parser
         );
@@ -37,15 +47,23 @@ export class Client extends ClientAbstract {
         );
     }
 
+    public user(): UserTag
+    {
+        return new UserTag(
+            this.httpClient,
+            this.parser
+        );
+    }
+
 
 
     public static build(token: string): Client
     {
-        return new Client('https://api.notion.com', new HttpBearer(token));
+        return new Client('https://api.notion.com/v1', new HttpBearer(token));
     }
 
     public static buildAnonymous(): Client
     {
-        return new Client('https://api.notion.com', new Anonymous());
+        return new Client('https://api.notion.com/v1', new Anonymous());
     }
 }

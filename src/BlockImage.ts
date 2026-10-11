@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {FileObject} from "./FileObject";
+import type {Block} from "./Block";
+import type {File} from "./File";
 
+/**
+ * Image block.
+ */
 export interface BlockImage extends Block {
-    image?: FileObject
+    type: "image"
+    image?: File
 }
 

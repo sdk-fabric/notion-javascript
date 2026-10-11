@@ -3,7 +3,11 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * Details about a person user.
+ */
 export interface Person {
     email?: string
+    email_verified?: boolean
 }
 

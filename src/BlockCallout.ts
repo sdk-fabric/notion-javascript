@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {Callout} from "./Callout";
+import type {Block} from "./Block";
+import type {Callout} from "./Callout";
 
+/**
+ * Callout block.
+ */
 export interface BlockCallout extends Block {
+    type: "callout"
     callout?: Callout
 }
 

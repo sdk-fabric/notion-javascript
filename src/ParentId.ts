@@ -3,11 +3,16 @@
  * {@link https://sdkgen.app}
  */
 
-import {DatabaseParentId} from "./DatabaseParentId";
-import {PageParentId} from "./PageParentId";
-import {BlockParentId} from "./BlockParentId";
-import {WorkspaceParentId} from "./WorkspaceParentId";
+import type {AgentParentId} from "./AgentParentId";
+import type {BlockParentId} from "./BlockParentId";
+import type {DataSourceParentId} from "./DataSourceParentId";
+import type {DatabaseParentId} from "./DatabaseParentId";
+import type {PageParentId} from "./PageParentId";
+import type {WorkspaceParentId} from "./WorkspaceParentId";
 
+/**
+ * Information about the parent of a page, block, database, data source or comment.
+ */
 export interface ParentId {
     type?: string
 }

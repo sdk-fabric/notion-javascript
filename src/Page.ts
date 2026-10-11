@@ -3,24 +3,42 @@
  * {@link https://sdkgen.app}
  */
 
-import {User} from "./User";
-import {FileObject} from "./FileObject";
-import {Icon} from "./Icon";
-import {ParentId} from "./ParentId";
+import type {PageOrDataSource} from "./PageOrDataSource";
+import type {Cover} from "./Cover";
+import type {User} from "./User";
+import type {Icon} from "./Icon";
+import type {ParentId} from "./ParentId";
+import type {PagePropertyValue} from "./PagePropertyValue";
+import type {CustomEmojiIcon} from "./CustomEmojiIcon";
+import type {EmojiIcon} from "./EmojiIcon";
+import type {ExternalIcon} from "./ExternalIcon";
+import type {FileIcon} from "./FileIcon";
+import type {FileUploadIcon} from "./FileUploadIcon";
+import type {NoticonIcon} from "./NoticonIcon";
+import type {AgentParentId} from "./AgentParentId";
+import type {BlockParentId} from "./BlockParentId";
+import type {DataSourceParentId} from "./DataSourceParentId";
+import type {DatabaseParentId} from "./DatabaseParentId";
+import type {PageParentId} from "./PageParentId";
+import type {WorkspaceParentId} from "./WorkspaceParentId";
 
-export interface Page {
-    object?: string
-    id?: string
-    created_time?: string
-    last_edited_time?: string
+/**
+ * The Page object contains the page property values of a single Notion page.
+ */
+export interface Page extends PageOrDataSource {
+    object: "page"
+    cover?: Cover
     created_by?: User
-    last_edited_by?: User
-    cover?: FileObject
-    icon?: Icon
+    created_time?: string
+    icon?: CustomEmojiIcon|EmojiIcon|ExternalIcon|FileIcon|FileUploadIcon|NoticonIcon
     in_trash?: boolean
-    properties?: Record<string, any>
-    parent?: ParentId
-    url?: string
+    is_archived?: boolean
+    is_locked?: boolean
+    last_edited_by?: User
+    last_edited_time?: string
+    parent?: AgentParentId|BlockParentId|DataSourceParentId|DatabaseParentId|PageParentId|WorkspaceParentId
+    properties?: Record<string, PagePropertyValue>
     public_url?: string
+    url?: string
 }
 

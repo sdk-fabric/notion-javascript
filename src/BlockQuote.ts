@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {Quote} from "./Quote";
+import type {Block} from "./Block";
+import type {Quote} from "./Quote";
 
+/**
+ * Quote block.
+ */
 export interface BlockQuote extends Block {
+    type: "quote"
     quote?: Quote
 }
 

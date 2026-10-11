@@ -3,9 +3,13 @@
  * {@link https://sdkgen.app}
  */
 
-import {Icon} from "./Icon";
+import type {Icon} from "./Icon";
 
+/**
+ * Emoji icon.
+ */
 export interface EmojiIcon extends Icon {
+    type: "emoji"
     emoji?: string
 }
 

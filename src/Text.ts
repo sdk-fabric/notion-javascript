@@ -3,8 +3,11 @@
  * {@link https://sdkgen.app}
  */
 
-import {Link} from "./Link";
+import type {Link} from "./Link";
 
+/**
+ * Text content of a rich text object of type text.
+ */
 export interface Text {
     content?: string
     link?: Link

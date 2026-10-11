@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {BulletedListItem} from "./BulletedListItem";
+import type {Block} from "./Block";
+import type {BulletedListItem} from "./BulletedListItem";
 
+/**
+ * Bulleted list item block.
+ */
 export interface BlockBulletedListItem extends Block {
+    type: "bulleted_list_item"
     bulleted_list_item?: BulletedListItem
 }
 

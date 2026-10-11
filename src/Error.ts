@@ -3,8 +3,15 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * Error response returned by the Notion API for any non-2xx status.
+ */
 export interface Error {
+    additional_data?: Record<string, any>
     code?: string
     message?: string
+    object?: string
+    request_id?: string
+    status?: number
 }
 

@@ -3,8 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
+import type {Block} from "./Block";
+import type {Embed} from "./Embed";
 
+/**
+ * Embed block.
+ */
 export interface BlockEmbed extends Block {
+    type: "embed"
+    embed?: Embed
 }
 

@@ -3,11 +3,17 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
+import type {RichText} from "./RichText";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * Content of a heading block.
+ */
 export interface Heading {
-    rich_text?: Array<RichText>
     color?: string
     is_toggleable?: boolean
+    rich_text?: Array<RichTextEquation|RichTextMention|RichTextText>
 }
 

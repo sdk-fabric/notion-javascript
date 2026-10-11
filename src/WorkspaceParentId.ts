@@ -3,9 +3,13 @@
  * {@link https://sdkgen.app}
  */
 
-import {ParentId} from "./ParentId";
+import type {ParentId} from "./ParentId";
 
+/**
+ * Parent is the workspace.
+ */
 export interface WorkspaceParentId extends ParentId {
+    type: "workspace"
     workspace?: boolean
 }
 

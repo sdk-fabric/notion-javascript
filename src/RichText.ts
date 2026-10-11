@@ -3,14 +3,18 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichTextEquation} from "./RichTextEquation";
-import {RichTextText} from "./RichTextText";
-import {RichTextAnnotation} from "./RichTextAnnotation";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
+import type {RichTextAnnotation} from "./RichTextAnnotation";
 
+/**
+ * Rich text object containing styled text, mentions or inline equations.
+ */
 export interface RichText {
-    type?: string
     annotations?: RichTextAnnotation
-    plain_text?: string
     href?: string
+    plain_text?: string
+    type?: string
 }
 

@@ -3,11 +3,17 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
+import type {RichText} from "./RichText";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * Content of a code block.
+ */
 export interface Code {
-    caption?: Array<RichText>
-    rich_text?: Array<RichText>
+    caption?: Array<RichTextEquation|RichTextMention|RichTextText>
     language?: string
+    rich_text?: Array<RichTextEquation|RichTextMention|RichTextText>
 }
 

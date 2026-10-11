@@ -13,14 +13,15 @@ import {UserCollection} from "./UserCollection";
 
 export class UserTag extends TagAbstract {
     /**
-     * Returns a paginated list of Users for the workspace. The response may contain fewer than page_size of results.
+     * Retrieves a User using the ID specified.
      *
-     * @returns {Promise<UserCollection>}
+     * @returns {Promise<User>}
      * @throws {ErrorException}
      * @throws {ClientException}
      */
-    public async getAll(startCursor?: string, pageSize?: number): Promise<UserCollection> {
-        const url = this.parser.url('/v1/users', {
+    public async get(userId: string): Promise<User> {
+        const url = this.parser.url('/users/:user_id', {
+            'user_id': userId,
         });
 
         let request: HttpRequest = {
@@ -29,8 +30,41 @@ export class UserTag extends TagAbstract {
             headers: {
             },
             params: this.parser.query({
-                'start_cursor': startCursor,
+            }, [
+            ]),
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as User;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Returns a paginated list of Users for the workspace. The response may contain fewer than page_size of results.
+     *
+     * @returns {Promise<UserCollection>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async getAll(pageSize?: number, startCursor?: string): Promise<UserCollection> {
+        const url = this.parser.url('/users', {
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'GET',
+            headers: {
+            },
+            params: this.parser.query({
                 'page_size': pageSize,
+                'start_cursor': startCursor,
             }, [
             ]),
         };
@@ -48,15 +82,14 @@ export class UserTag extends TagAbstract {
         throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
     }
     /**
-     * Retrieves a User using the ID specified.
+     * Retrieves the bot User associated with the API token provided in the authorization header.
      *
      * @returns {Promise<User>}
      * @throws {ErrorException}
      * @throws {ClientException}
      */
-    public async get(userId: string): Promise<User> {
-        const url = this.parser.url('/v1/users/:user_id', {
-            'user_id': userId,
+    public async getMe(): Promise<User> {
+        const url = this.parser.url('/users/me', {
         });
 
         let request: HttpRequest = {

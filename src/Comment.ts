@@ -3,12 +3,36 @@
  * {@link https://sdkgen.app}
  */
 
-import {ParentId} from "./ParentId";
-import {RichText} from "./RichText";
+import type {CommentAttachment} from "./CommentAttachment";
+import type {User} from "./User";
+import type {CommentDisplayName} from "./CommentDisplayName";
+import type {ParentId} from "./ParentId";
+import type {RichText} from "./RichText";
+import type {AgentParentId} from "./AgentParentId";
+import type {BlockParentId} from "./BlockParentId";
+import type {DataSourceParentId} from "./DataSourceParentId";
+import type {DatabaseParentId} from "./DatabaseParentId";
+import type {PageParentId} from "./PageParentId";
+import type {WorkspaceParentId} from "./WorkspaceParentId";
+import type {RichTextEquation} from "./RichTextEquation";
+import type {RichTextMention} from "./RichTextMention";
+import type {RichTextText} from "./RichTextText";
 
+/**
+ * A comment on a Notion page or block.
+ */
 export interface Comment {
-    parent?: ParentId
+    attachments?: Array<CommentAttachment>
+    created_by?: User
+    created_time?: string
     discussion_id?: string
-    rich_text?: RichText
+    display_name?: CommentDisplayName
+    has_pending_attachments?: boolean
+    id?: string
+    last_edited_time?: string
+    object?: string
+    original_content_deleted?: boolean
+    parent?: AgentParentId|BlockParentId|DataSourceParentId|DatabaseParentId|PageParentId|WorkspaceParentId
+    rich_text?: Array<RichTextEquation|RichTextMention|RichTextText>
 }
 

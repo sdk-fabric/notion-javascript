@@ -6,20 +6,57 @@
 import {TagAbstract, HttpRequest} from "sdkgen-client"
 import {ClientException, UnknownStatusCodeException} from "sdkgen-client";
 
+import {CreateDatabaseRequest} from "./CreateDatabaseRequest";
 import {Database} from "./Database";
 import {Error} from "./Error";
 import {ErrorException} from "./ErrorException";
+import {UpdateDatabaseRequest} from "./UpdateDatabaseRequest";
 
 export class DatabaseTag extends TagAbstract {
     /**
-     * Retrieves a database object — information that describes the structure and columns of a database — for a provided database ID. The response adheres to any limits to an integration’s capabilities.
+     * Creates a database and its initial data source as a child of a page or the workspace.
+     *
+     * @returns {Promise<Database>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async create(payload: CreateDatabaseRequest): Promise<Database> {
+        const url = this.parser.url('/databases', {
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            params: this.parser.query({
+            }, [
+            ]),
+            data: payload
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as Database;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Retrieves a database object, a container for one or more data sources, for a provided database ID. Use Retrieve a data source to read its property schema.
      *
      * @returns {Promise<Database>}
      * @throws {ErrorException}
      * @throws {ClientException}
      */
     public async get(databaseId: string): Promise<Database> {
-        const url = this.parser.url('/v1/databases/:database_id', {
+        const url = this.parser.url('/databases/:database_id', {
             'database_id': databaseId,
         });
 
@@ -31,6 +68,42 @@ export class DatabaseTag extends TagAbstract {
             params: this.parser.query({
             }, [
             ]),
+        };
+
+        const response = await this.httpClient.request(request);
+        if (response.ok) {
+            return await response.json() as Database;
+        }
+
+        const statusCode = response.status;
+        if (statusCode >= 0 && statusCode <= 999) {
+            throw new ErrorException(await response.json() as Error);
+        }
+
+        throw new UnknownStatusCodeException('The server returned an unknown status code: ' + statusCode);
+    }
+    /**
+     * Updates the attributes (title, description, icon, cover, parent, inline, trash and lock status) of a database.
+     *
+     * @returns {Promise<Database>}
+     * @throws {ErrorException}
+     * @throws {ClientException}
+     */
+    public async update(databaseId: string, payload: UpdateDatabaseRequest): Promise<Database> {
+        const url = this.parser.url('/databases/:database_id', {
+            'database_id': databaseId,
+        });
+
+        let request: HttpRequest = {
+            url: url,
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            params: this.parser.query({
+            }, [
+            ]),
+            data: payload
         };
 
         const response = await this.httpClient.request(request);

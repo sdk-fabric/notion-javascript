@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {RichText} from "./RichText";
-import {Text} from "./Text";
+import type {RichText} from "./RichText";
+import type {Text} from "./Text";
 
+/**
+ * Rich text object of type text.
+ */
 export interface RichTextText extends RichText {
+    type: "text"
     text?: Text
 }
 

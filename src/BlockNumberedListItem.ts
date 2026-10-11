@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {NumberedListItem} from "./NumberedListItem";
+import type {Block} from "./Block";
+import type {NumberedListItem} from "./NumberedListItem";
 
+/**
+ * Numbered list item block.
+ */
 export interface BlockNumberedListItem extends Block {
+    type: "numbered_list_item"
     numbered_list_item?: NumberedListItem
 }
 

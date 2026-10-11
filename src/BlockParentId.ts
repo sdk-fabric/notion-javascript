@@ -3,9 +3,13 @@
  * {@link https://sdkgen.app}
  */
 
-import {ParentId} from "./ParentId";
+import type {ParentId} from "./ParentId";
 
+/**
+ * Parent is a block.
+ */
 export interface BlockParentId extends ParentId {
+    type: "block_id"
     block_id?: string
 }
 

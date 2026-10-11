@@ -3,9 +3,13 @@
  * {@link https://sdkgen.app}
  */
 
-import {ParentId} from "./ParentId";
+import type {ParentId} from "./ParentId";
 
+/**
+ * Parent is a database.
+ */
 export interface DatabaseParentId extends ParentId {
+    type: "database_id"
     database_id?: string
 }
 

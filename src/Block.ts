@@ -3,39 +3,64 @@
  * {@link https://sdkgen.app}
  */
 
-import {BlockBookmark} from "./BlockBookmark";
-import {BlockBreadcrumb} from "./BlockBreadcrumb";
-import {BlockBulletedListItem} from "./BlockBulletedListItem";
-import {BlockCallout} from "./BlockCallout";
-import {BlockChildDatabase} from "./BlockChildDatabase";
-import {BlockChildPage} from "./BlockChildPage";
-import {BlockCode} from "./BlockCode";
-import {BlockDivider} from "./BlockDivider";
-import {BlockEmbed} from "./BlockEmbed";
-import {BlockEquation} from "./BlockEquation";
-import {BlockFile} from "./BlockFile";
-import {BlockHeading} from "./BlockHeading1";
-import {BlockHeading} from "./BlockHeading2";
-import {BlockHeading} from "./BlockHeading3";
-import {BlockImage} from "./BlockImage";
-import {BlockNumberedListItem} from "./BlockNumberedListItem";
-import {BlockParagraph} from "./BlockParagraph";
-import {BlockPDF} from "./BlockPDF";
-import {BlockQuote} from "./BlockQuote";
-import {ParentId} from "./ParentId";
-import {User} from "./User";
+import type {BlockAudio} from "./BlockAudio";
+import type {BlockBookmark} from "./BlockBookmark";
+import type {BlockBreadcrumb} from "./BlockBreadcrumb";
+import type {BlockBulletedListItem} from "./BlockBulletedListItem";
+import type {BlockCallout} from "./BlockCallout";
+import type {BlockChildDatabase} from "./BlockChildDatabase";
+import type {BlockChildPage} from "./BlockChildPage";
+import type {BlockCode} from "./BlockCode";
+import type {BlockColumn} from "./BlockColumn";
+import type {BlockColumnList} from "./BlockColumnList";
+import type {BlockDivider} from "./BlockDivider";
+import type {BlockEmbed} from "./BlockEmbed";
+import type {BlockEquation} from "./BlockEquation";
+import type {BlockFile} from "./BlockFile";
+import type {BlockHeadingFour} from "./BlockHeadingFour";
+import type {BlockHeadingOne} from "./BlockHeadingOne";
+import type {BlockHeadingThree} from "./BlockHeadingThree";
+import type {BlockHeadingTwo} from "./BlockHeadingTwo";
+import type {BlockImage} from "./BlockImage";
+import type {BlockLinkPreview} from "./BlockLinkPreview";
+import type {BlockLinkToPage} from "./BlockLinkToPage";
+import type {BlockMeetingNotes} from "./BlockMeetingNotes";
+import type {BlockNumberedListItem} from "./BlockNumberedListItem";
+import type {BlockPDF} from "./BlockPDF";
+import type {BlockParagraph} from "./BlockParagraph";
+import type {BlockQuote} from "./BlockQuote";
+import type {BlockSyncedBlock} from "./BlockSyncedBlock";
+import type {BlockTab} from "./BlockTab";
+import type {BlockTable} from "./BlockTable";
+import type {BlockTableOfContents} from "./BlockTableOfContents";
+import type {BlockTableRow} from "./BlockTableRow";
+import type {BlockTemplate} from "./BlockTemplate";
+import type {BlockToDo} from "./BlockToDo";
+import type {BlockToggle} from "./BlockToggle";
+import type {BlockUnsupported} from "./BlockUnsupported";
+import type {BlockVideo} from "./BlockVideo";
+import type {User} from "./User";
+import type {ParentId} from "./ParentId";
+import type {AgentParentId} from "./AgentParentId";
+import type {BlockParentId} from "./BlockParentId";
+import type {DataSourceParentId} from "./DataSourceParentId";
+import type {DatabaseParentId} from "./DatabaseParentId";
+import type {PageParentId} from "./PageParentId";
+import type {WorkspaceParentId} from "./WorkspaceParentId";
 
+/**
+ * A block object represents a piece of content within Notion.
+ */
 export interface Block {
-    object?: string
-    id?: string
-    parent?: ParentId
-    type?: string
-    created_time?: string
     created_by?: User
-    last_edited_time?: string
-    last_edited_by?: User
-    archived?: boolean
-    in_trash?: boolean
+    created_time?: string
     has_children?: boolean
+    id?: string
+    in_trash?: boolean
+    last_edited_by?: User
+    last_edited_time?: string
+    object?: string
+    parent?: AgentParentId|BlockParentId|DataSourceParentId|DatabaseParentId|PageParentId|WorkspaceParentId
+    type?: string
 }
 

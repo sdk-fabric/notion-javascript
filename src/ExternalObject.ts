@@ -3,6 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * An externally hosted file.
+ */
 export interface ExternalObject {
     url?: string
 }

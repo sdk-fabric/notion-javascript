@@ -3,6 +3,9 @@
  * {@link https://sdkgen.app}
  */
 
+/**
+ * Content of a link preview.
+ */
 export interface LinkPreview {
     url?: string
 }

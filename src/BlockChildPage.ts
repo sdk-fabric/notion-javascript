@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Block} from "./Block";
-import {ChildPage} from "./ChildPage";
+import type {Block} from "./Block";
+import type {ChildPage} from "./ChildPage";
 
+/**
+ * Child page block.
+ */
 export interface BlockChildPage extends Block {
+    type: "child_page"
     child_page?: ChildPage
 }
 

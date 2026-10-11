@@ -3,10 +3,14 @@
  * {@link https://sdkgen.app}
  */
 
-import {Icon} from "./Icon";
-import {ExternalObject} from "./ExternalObject";
+import type {Icon} from "./Icon";
+import type {ExternalObject} from "./ExternalObject";
 
+/**
+ * Icon hosted at an external URL.
+ */
 export interface ExternalIcon extends Icon {
+    type: "external"
     external?: ExternalObject
 }
 
